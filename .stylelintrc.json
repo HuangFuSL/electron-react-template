@@ -1,8 +1,6 @@
 {
     "extends": "stylelint-config-standard",
-    "plugins": [
-        "stylelint-order"
-    ],
+    "plugins": ["stylelint-order"],
     "rules": {
         "order/order": [
             "dollar-variables",
@@ -11,6 +9,7 @@
             "custom-properties",
             "rules"
         ],
+        "indentation": 4,
         "order/properties-order": [
             "content",
             {

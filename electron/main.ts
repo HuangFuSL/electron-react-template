@@ -1,34 +1,31 @@
-import { app, BrowserWindow, ipcMain } from "electron";
-import * as path from "path";
+import { app, BrowserWindow, ipcMain } from 'electron';
+import * as path from 'path';
 
 function createWindow() {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, "preload.js"),
+            preload: path.join(__dirname, 'preload.js')
         },
-        width: 800,
+        width: 800
     });
 
-    mainWindow.loadFile(path.join(__dirname, "../index.html"));
-    mainWindow.webContents.openDevTools();
+    mainWindow.loadFile(path.join(__dirname, '../index.html'));
 }
 
-app.on("ready", () => {
+app.on('ready', () => {
     createWindow();
 
-    app.on("activate", function () {
+    app.on('activate', function () {
         if (BrowserWindow.getAllWindows().length === 0) createWindow();
     });
 
-    ipcMain.on('debug', function (event, name: string, value: number) {
+    ipcMain.on('debug', function (event: unknown, name: string, value: number) {
         console.log(name + '=' + value);
-    })
+    });
 });
 
-app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") {
-        app.quit();
-    }
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') app.quit();
 });
