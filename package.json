@@ -5,6 +5,8 @@
   "private": true,
   "description": "GUI Application Template based on TypeScript, Electron, React and MUI",
   "license": "MIT",
+  "main": "build/electron/main.js",
+  "homepage": ".",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@emotion/react": "^11.10.6",
@@ -71,8 +73,9 @@
     "workbox-webpack-plugin": "^6.4.1"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "start": "cross-env BROWSER=none node scripts/start.js",
+    "build": "node scripts/build.js && tsc --project electron/tsconfig.json",
+    "launch": "npm run build && electron .",
     "test": "node scripts/test.js",
     "lint:fix": "eslint ./src --ext \".js,.jsx,.ts,.tsx\" --fix && stylelint \"./src/**/*.css\" --fix",
     "lint": "eslint ./src --ext \".js,.jsx,.ts,.tsx\" && stylelint \"./src/**/*.css\""
@@ -152,6 +155,11 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "^23.1.4",
+    "electron-builder": "^23.6.0",
+    "foreman": "^3.0.1",
+    "nodemon": "^2.0.21",
     "stylelint": "^15.3.0",
     "stylelint-config-standard": "^31.0.0",
     "stylelint-order": "^6.0.3"
