@@ -42,9 +42,7 @@
     "fs-extra": "^10.0.0",
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.4.3",
     "jest-resolve": "^27.4.2",
-    "jest-watch-typeahead": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.5",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
@@ -99,49 +97,78 @@
     ]
   },
   "jest": {
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
-    ],
-    "setupFiles": [
-      "react-app-polyfill/jsdom"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.ts"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
-    ],
-    "testEnvironment": "jsdom",
-    "transform": {
-      "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
-      "^.+\\.module\\.(css|sass|scss)$"
-    ],
-    "modulePaths": [],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "web.ts",
-      "ts",
-      "web.tsx",
-      "tsx",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
+    "projects": [
+      {
+        "roots": [
+          "<rootDir>/src"
+        ],
+        "collectCoverageFrom": [
+          "src/**/*.{js,jsx,ts,tsx}",
+          "!src/**/*.d.ts"
+        ],
+        "setupFiles": [
+          "react-app-polyfill/jsdom"
+        ],
+        "setupFilesAfterEnv": [
+          "<rootDir>/src/setupTests.ts"
+        ],
+        "testMatch": [
+          "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+          "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+        ],
+        "runner": "@kayahr/jest-electron-runner",
+        "testEnvironment": "@kayahr/jest-electron-runner/environment",
+        "transform": {
+          "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
+          "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+          "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+        },
+        "transformIgnorePatterns": [
+          "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+          "^.+\\.module\\.(css|sass|scss)$"
+        ],
+        "modulePaths": [],
+        "moduleNameMapper": {
+          "^react-native$": "react-native-web",
+          "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+        },
+        "moduleFileExtensions": [
+          "web.js",
+          "js",
+          "web.ts",
+          "ts",
+          "web.tsx",
+          "tsx",
+          "json",
+          "web.jsx",
+          "jsx",
+          "node"
+        ]
+      },
+      {
+        "roots": [
+          "<rootDir>/electron"
+        ],
+        "collectCoverageFrom": [
+          "electron/**/*.{js,ts}",
+          "!electron/**/*.d.ts"
+        ],
+        "setupFilesAfterEnv": [
+          "<rootDir>/electron/setupTests.ts"
+        ],
+        "testMatch": [
+          "<rootDir>/electron/**/__tests__/**/*.{js,ts}",
+          "<rootDir>/electron/**/*.{spec,test}.{js,ts}"
+        ],
+        "runner": "@kayahr/jest-electron-runner/main",
+        "testEnvironment": "node",
+        "moduleFileExtensions": [
+          "js",
+          "ts",
+          "json",
+          "node"
+        ]
+      }
     ],
     "watchPlugins": [
       "jest-watch-typeahead/filename",
@@ -155,10 +182,14 @@
     ]
   },
   "devDependencies": {
+    "@kayahr/jest-electron-runner": "^29.3.1",
     "cross-env": "^7.0.3",
     "electron": "^23.1.4",
     "electron-builder": "^23.6.0",
     "foreman": "^3.0.1",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "jest-watch-typeahead": "^2.2.2",
     "nodemon": "^2.0.21",
     "stylelint": "^15.3.0",
     "stylelint-config-standard": "^31.0.0",
