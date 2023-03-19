@@ -1,6 +1,6 @@
 {
   "name": "electron-react-template",
-  "version": "dev",
+  "version": "1.0.0",
   "author": "HuangFuSL",
   "private": true,
   "description": "GUI Application Template based on TypeScript, Electron, React and MUI",
