@@ -2,9 +2,22 @@
     "compilerOptions": {
         "baseUrl": ".",
         "module": "commonjs",
+        "target": "es6",
         "noImplicitAny": true,
         "outDir": "../build/electron",
-        "sourceMap": true
+        "sourceMap": true,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "allowUnreachableCode": false,
+        "alwaysStrict": true,
+        "strict": true,
+        "strictBindCallApply": true,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "skipLibCheck": true
     },
     "include": [".", "../src/types"],
     "exclude": ["node_modules"]
